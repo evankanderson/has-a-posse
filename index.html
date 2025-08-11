@@ -1,13 +1,162 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Project Support Assessment</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Support Assessment</title>
+</head>
+
+<body>
+  <div id="app">
+    <div class="container">
+      <h1>Project Support Assessment</h1>
+      <form id="questionnaire-form">
+        <question-card number="1" question="Do you have or support commercial users of your project?"
+          name="commercial-support" section="Support Policy">
+          <option-box value="no" exit="true">
+            No
+            <policy-text>
+              This software is free and open-source software which is not distributed in the course of a
+              commercial activity.
+              
+              [Recital 18 from the CRA](https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202402847#rct_18)
+              applies.
+            </policy-text>
+          </option-box>
+          <option-box value="implicit" exit="true">
+            We implicitly support commercial use, but do not actively think about it
+            <policy-text>
+              This project accepts commercial use without explicit terms or support commitments.
+              As it is free and open-source software which is not distributed in the course of a
+              commercial activity, [Recital 18 from the CRA](https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202402847#rct_18)
+              applies.
+            </policy-text>
+          </option-box>
+          <option-box value="designed">
+            Our project has been designed to enable commercial use, but the maintainers are not paid
+            <policy-text>
+              This project actively encourages commercial adoption through thoughtful design and
+              licensing. Consider establishing sustainable funding models or support tiers.
+            </policy-text>
+          </option-box>
+          <option-box value="paid">
+            We offer paid support
+            <policy-text>
+              This project operates with a sustainable business model providing professional
+              support services. Ensure clear SLAs and support boundaries are documented.
+            </policy-text>
+          </option-box>
+        </question-card>
+
+        <question-card number="2" question="Do you follow any security practices in your development workflow?"
+          name="security-practices" section="Security Practices">
+          <option-box value="no-formal">
+            We do not have a formal development workflow
+            <policy-text>
+              This project does not have a structured development processes, which may
+              increase security risks. Consider implementing basic workflow documentation and security
+              guidelines.
+            </policy-text>
+          </option-box>
+          <option-box value="some-practices">
+            We follow some of the secure software development lifecycle best practices, but not all
+            <policy-text>
+              Your project has begun adopting security-conscious development practices but
+              may have gaps in coverage. Consider a comprehensive security practices audit and
+              implementation plan.
+            </policy-text>
+          </option-box>
+          <option-box value="documented">
+            We document security practices for contributors in CONTRIBUTING.md
+            <policy-text>
+              Your project maintains clear security guidelines for contributors,
+              demonstrating a commitment to secure development practices. Regularly review and update
+              these guidelines.
+            </policy-text>
+          </option-box>
+        </question-card>
+
+        <question-card number="3" question="How does your project manage reported vulnerabilities?"
+          name="vulnerability-management" section="Vulnerability Management">
+          <option-box value="no-process">
+            We do not have a written vulnerability management process
+            <policy-text>
+              Your project lacks formal vulnerability management procedures, which may delay
+              response to security issues. Consider establishing clear reporting channels and response
+              protocols.
+            </policy-text>
+          </option-box>
+          <option-box value="documented-process">
+            Our vulnerability reporting process is documented in SECURITY.md
+            <policy-text>
+              Your project has established clear vulnerability reporting procedures,
+              demonstrating transparency and commitment to security. Ensure the documentation is kept
+              current and accessible.
+            </policy-text>
+          </option-box>
+          <option-box value="full-process">
+            Our vulnerability reporting process is documented in SECURITY.md, and we have documentation
+            for responding to vulnerabilities including timelines for remediation
+            <policy-text>
+              Your project maintains comprehensive vulnerability management with clear
+              procedures and timelines. This demonstrates professional security practices and builds
+              user confidence.
+            </policy-text>
+          </option-box>
+        </question-card>
+
+        <question-card number="4"
+          question="Does your project perform any sort of explicit security design, including threat modelling or testing?"
+          name="security-design" section="Security Design">
+          <option-box value="no-formal">
+            We do not have a formal threat model or security documentation.
+            <policy-text>
+              Your project lacks structured security design processes, which may leave
+              vulnerabilities unidentified. Consider developing a basic threat model and security
+              documentation.
+            </policy-text>
+          </option-box>
+          <option-box value="documented-model">
+            We have a documented threat model, and we reference it during design activities
+            <policy-text>
+              Your project has established security design practices with documented threat
+              modeling. Ensure the threat model is regularly updated and actively used in development
+              decisions.
+            </policy-text>
+          </option-box>
+          <option-box value="active-testing">
+            We have a documented threat model which is used to guide active testing.
+            <policy-text>
+              Your project demonstrates advanced security practices with threat modeling
+              informing active security testing. This represents a mature approach to security design
+              and validation.
+            </policy-text>
+          </option-box>
+        </question-card>
+
+        <div class="form-actions" style="display: none;">
+          <button type="submit" class="btn btn-primary">Generate Assessment</button>
+          <button type="button" class="btn btn-secondary" id="reset-btn">Reset Form</button>
+        </div>
+      </form>
+
+      <div class="result hidden" id="result">
+        <h2>Assessment Complete</h2>
+        <div class="markdown-preview">
+          <h3>Your Assessment Results:</h3>
+          <pre id="markdown-content"></pre>
+          <strong>Store this content as `COMPLIANCE.md` at your repository root.</strong>
+        </div>
+        <div class="result-actions">
+          <button class="btn download-btn" id="download-btn">Download Markdown File</button>
+          <button class="btn restart-btn" id="restart-btn">Start Over</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
 </html>

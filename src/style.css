@@ -21,60 +21,22 @@ h1 {
   margin-bottom: 30px;
 }
 
-.question {
-  margin-bottom: 30px;
+.question-section {
+  margin-bottom: 40px;
 }
 
-.question h2 {
-  color: #2c3e50;
-  font-size: 1.2em;
-  margin-bottom: 15px;
-}
-
-.options {
-  list-style: none;
+.question-section[style*="visibility: hidden"] {
+  height: 0;
+  overflow: hidden;
+  display: none;
+  margin: 0;
   padding: 0;
 }
 
-.option {
-  margin-bottom: 10px;
-}
-
-.option label {
+.form-actions {
   display: flex;
-  align-items: flex-start;
-  cursor: pointer;
-  padding: 12px;
-  border: 2px solid #e0e0e0;
-  border-radius: 6px;
-  transition: all 0.3s ease;
-}
-
-.option label:hover {
-  border-color: #3498db;
-  background-color: #f8f9fa;
-}
-
-.option input[type="radio"] {
-  margin-right: 12px;
-  margin-top: 4px;
-  flex-shrink: 0;
-}
-
-.option input[type="radio"]:checked + span {
-  font-weight: 600;
-  color: #2c3e50;
-}
-
-.option label:has(input[type="radio"]:checked) {
-  border-color: #3498db;
-  background-color: #e3f2fd;
-}
-
-.navigation {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center;
+  gap: 15px;
   margin-top: 30px;
   padding-top: 20px;
   border-top: 1px solid #e0e0e0;
@@ -117,24 +79,6 @@ h1 {
   display: none;
 }
 
-.progress {
-  margin-bottom: 30px;
-}
-
-.progress-bar {
-  width: 100%;
-  height: 8px;
-  background-color: #e0e0e0;
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.progress-fill {
-  height: 100%;
-  background-color: #3498db;
-  transition: width 0.3s ease;
-}
-
 .result {
   margin-top: 30px;
   padding: 20px;
@@ -143,10 +87,38 @@ h1 {
   border-left: 4px solid #3498db;
 }
 
+.markdown-preview {
+  margin: 20px 0;
+}
+
+.markdown-preview h3 {
+  color: #2c3e50;
+  margin-bottom: 15px;
+}
+
+.markdown-preview pre {
+  background-color: #f4f4f4;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 15px;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.result-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
 .download-btn {
   background-color: #27ae60;
   color: white;
-  margin-top: 15px;
 }
 
 .download-btn:hover {
@@ -156,9 +128,108 @@ h1 {
 .restart-btn {
   background-color: #e74c3c;
   color: white;
-  margin-left: 10px;
 }
 
 .restart-btn:hover {
   background-color: #c0392b;
+}
+
+/* Custom Elements Styling */
+question-card {
+  display: block;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+question-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  border-color: #3498db;
+}
+
+question-card h2 {
+  color: #2c3e50;
+  font-size: 1.3em;
+  font-weight: 600;
+  margin: 0 0 20px 0;
+  line-height: 1.4;
+}
+
+option-box {
+  display: block;
+  position: relative;
+  background: #f8f9fa;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+option-box:hover {
+  background: #e3f2fd;
+  border-color: #3498db;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(52, 152, 219, 0.2);
+}
+
+option-box:has(input[type="radio"]:checked) {
+  background: #e8f5e8;
+  border-color: #27ae60;
+  box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.1);
+}
+
+option-box input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+option-box span {
+  display: block;
+  font-weight: 500;
+  color: #2c3e50;
+  line-height: 1.5;
+}
+
+option-box:has(input[type="radio"]:checked) span {
+  font-weight: 600;
+  color: #27ae60;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  .container {
+    padding: 20px;
+    margin: 10px;
+  }
+  
+  question-card {
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  question-card h2 {
+    font-size: 1.2em;
+  }
+  
+  option-box {
+    padding: 14px 16px;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .result-actions {
+    flex-direction: column;
+  }
 }
