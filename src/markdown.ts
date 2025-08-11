@@ -9,13 +9,17 @@ export interface Answer {
 
 export function generateMarkdownReport(answers: Answer[], exitMessage?: string): string {
   if (exitMessage) {
-    return `# Compliance Information Statement
+    return `<!-- SAMPLE, NOT FOR USE OR DISTRIBUTION -->
+
+# Compliance Information Statement
 
 ${exitMessage}
 `;
   }
 
-  let markdown = `# Introduction and Purpose
+  let markdown = `<!-- SAMPLE, NOT FOR USE OR DISTRIBUTION -->
+
+# Introduction and Purpose
 
 This project is committed to providing our consumers and adopters with capabilities that
 are designed with security in mind. To achieve this, this project is committed to secure
